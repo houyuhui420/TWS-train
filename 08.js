@@ -1,58 +1,28 @@
-//判断是否为质数
-function isPrime(n) {
-  for (var i = n - 1; i > 1; i--) {
-        if (n % i == 0) {
-            return false;
-                }
-            }
-            return true;
-
-        }
-
-
-function primeArray(n, array) {
-            array = new Array();
-
-            for (var i = 2; i < n; i++) {
-                //是否为质数
-                if (isPrime(i)) {
-                    var temp_R = n % i;//余数
-                    var temp_c = n / i;//商
-                    //是否整除
-                    if (temp_R == 0) {
-
-                        array.push(i);
-
-
-                        if (!isPrime(temp_c)) {
-                            //商不为质数
-                            array = array.concat(primeArray(temp_c, array));
-
-
-                        } else {
-                            array.push(temp_c);
-
-
-                        }
-                        break;
-                    }
-                }
-
-
-            }
-
-
-            return array;
-
-
-        }
-
-
-    var a =    primeArray(90,[]);
-    var str = '90 = ';
-
-    for(let i = 0; i<a.length;i++){
-      str += a[i].toString();
+function count(num){
+  const originNum = num;
+  const arry = [];
+  let n = 0;
+  while(num >= n){
+    if(n === num){
+      arry.push(n);
+      break;
+    }else if(num%n === 0 && n>=2){
+      num = num/n;
+      arry.push(n);
+    }else{
+      n++;
     }
+  }
+return originNum + "=" + arry.join("");
+}
 
-console.log(str);
+var readline = require('readline');
+var rl = readline.createInterface(process.stdin,process.stdout);
+
+// question方法
+rl.question('请输入一个正整数： ',function(answer){
+  console.log(count(answer));
+  //不加close，则不会结束
+  rl.close();
+  process.exit(0);
+}); 
