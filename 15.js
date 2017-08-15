@@ -6,7 +6,7 @@ function count(array,item){
       num += 1;
     }
   });
-  console.log("item = " + 1 + ",item出现的次数为" + num);
+  console.log("item = " + item + ",item出现的次数为" + num);
 }
 
 count([1, 3, 7, 1 ,4,],1);
